@@ -1,8 +1,8 @@
 {
-  "name": "jstracker",
+  "name": "mai",
   "version": "1.0.3",
   "description": "JavaScript stack trace",
-  "main": "dist/jstracker.js",
+  "main": "dist/mai.js",
   "scripts": {
     "build": "rollup -c -w"
   },
@@ -12,7 +12,7 @@
   },
   "keywords": [
     "monitor",
-    "jstracker"
+    "mai"
   ],
   "author": "",
   "license": "MIT",

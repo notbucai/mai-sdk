@@ -1,8 +1,8 @@
-# jstracker: JavaScript stack trace
+# mai: JavaScript stack trace
 
 [![build status](https://img.shields.io/travis/CurtisCBS/monitor/master.svg?style=flat-square)](https://travis-ci.org/CurtisCBS/monitor)
-[![npm version](https://img.shields.io/npm/v/jstracker.svg?style=flat-square)](https://www.npmjs.com/package/jstracker)
-[![npm downloads](https://img.shields.io/npm/dm/jstracker.svg?style=flat-square)](https://www.npmjs.com/package/jstracker)
+[![npm version](https://img.shields.io/npm/v/mai.svg?style=flat-square)](https://www.npmjs.com/package/mai)
+[![npm downloads](https://img.shields.io/npm/dm/mai.svg?style=flat-square)](https://www.npmjs.com/package/mai)
 
 ## 简介
 
@@ -32,10 +32,10 @@
 #### script mode
 
 ```html
-<script src="../dist/jstracker.js"></script>
+<script src="../dist/mai.js"></script>
 
 <script>
-  jstracker.init({
+  mai.init({
     delay: 1000,
     maxError: 10,
     sampling: 1,
@@ -51,15 +51,15 @@
 1.安装
 
 ```sh
-npm install jstracker --save
+npm install mai --save
 ```
 
 2.在文件中添加
 
 ```javascript
-import jstracker from 'jstracker'
+import mai from 'mai'
 
-jstracker.init({
+mai.init({
   concat: false,
   report: function(errorLogs) {
     // console.log('send')
@@ -105,14 +105,14 @@ var ERROR_TRY_CATCH = 8
 
 ### try..catch 捕获
 
-jstracker 暴露出一个 `tryJS` 对象，可以处理 try..catch 包裹等
+mai 暴露出一个 `tryJS` 对象，可以处理 try..catch 包裹等
 
 #### 将函数使用 try..catch 包装
 
 ```javascript
-import jstracker from 'jstracker';
+import mai from 'mai';
 
-this.handleSelect = jstracker.tryJS.wrap(this.handleSelect);
+this.handleSelect = mai.tryJS.wrap(this.handleSelect);
 ```
 
 #### 只包装参数
@@ -123,7 +123,7 @@ function test(type, callback) {
   callback()
 }
 
-(jstracker.tryJS.wrapArgs(test))(4, function() {
+(mai.tryJS.wrapArgs(test))(4, function() {
   a = b
 })
 ```
