@@ -1,2 +1,2 @@
-export { App } from './core';
-export { MonitorPlugin } from './plugins/monitor';
+export { App } from './core'
+export { MonitorPlugin } from './plugins/monitor'

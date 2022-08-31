@@ -1,7 +1,5 @@
 import { fromError } from 'stacktrace-js'
-import { ExceptionType } from './constant/error'
 import { IExceptionMessage } from './types/IException'
-import uaParser from 'ua-parser-js';
 /**
  * debounce
  *
@@ -11,17 +9,16 @@ import uaParser from 'ua-parser-js';
  *
  * @return {Function}
  */
-export function debounce(func: any, delay: any, callback: any) {
+export function debounce (func: any, delay: any, callback: any) {
   let timer: any
 
-  return function () {
-    let context = this
-    let args = arguments
+  return function (...args: any[]) {
+    const self = this
 
     clearTimeout(timer)
 
     timer = setTimeout(function () {
-      func.apply(context, args)
+      func.apply(self, args)
 
       !callback || callback()
     }, delay)
@@ -35,8 +32,8 @@ export function debounce(func: any, delay: any, callback: any) {
  * @param  {Object} dest
  * @return {Object}
  */
-export function merge(src: any, dest: any) {
-  for (let item in src) {
+export function merge (src: any, dest: any) {
+  for (const item in src){
     dest[item] = src[item]
   }
 
@@ -49,8 +46,8 @@ export function merge(src: any, dest: any) {
  * @param  {Any} func 判断对象
  * @return {Boolean}
  */
-export function isFunction(func: any) {
-  return typeof func === 'function'; //Object.prototype.toString.call(func) === '[object Function]'
+export function isFunction (func: any) {
+  return typeof func === 'function' //Object.prototype.toString.call(func) === '[object Function]'
 }
 
 /**
@@ -59,11 +56,11 @@ export function isFunction(func: any) {
  * @param  {Object} arrayLike 类数组对象
  * @return {Array} 转化后的数组
  */
-export function arrayFrom(arrayLike: any) {
+export function arrayFrom (arrayLike: any) {
   return [].slice.call(arrayLike)
 }
 
-export async function formatError(error: Error): Promise<IExceptionMessage> {
+export async function formatError (error: Error): Promise<IExceptionMessage> {
   try {
     const [res] = await fromError(error)
     return {
@@ -73,22 +70,22 @@ export async function formatError(error: Error): Promise<IExceptionMessage> {
       lineno: res.lineNumber,
       colno: res.columnNumber,
       source: res.source,
-      fileName: res.fileName,
+      fileName: res.fileName
     }
-  } catch (e) {
+  } catch (e){
     try {
-      const [res_1] = await fromError(e)
+      const [res] = await fromError(e)
       return {
         type: e?.name || 'UnknownError',
         message: e?.message,
         stack: e?.stack,
-        lineno: res_1.lineNumber,
-        colno: res_1.columnNumber,
-        source: res_1.source,
-        fileName: res_1.fileName,
+        lineno: res.lineNumber,
+        colno: res.columnNumber,
+        source: res.source,
+        fileName: res.fileName,
         origin
       }
-    } catch (e) {
+    } catch (e){
       return {
         type: e?.name || 'UnknownError',
         message: `${e?.message}`,
@@ -99,19 +96,19 @@ export async function formatError(error: Error): Promise<IExceptionMessage> {
   }
 }
 
-export function setCookie(name: string, value: string, time: number = 60) { // 设置cookie方法
-  var d = new Date();
-  d.setTime(d.getTime() + (time * 24 * 60 * 60 * 1000)); // 设置cookie到期时间
-  var expires = "expires=" + d.toUTCString();
-  document.cookie = name + "=" + value + "; " + expires;
+export function setCookie (name: string, value: string, time = 60) { // 设置cookie方法
+  const d = new Date()
+  d.setTime(d.getTime() + (time * 24 * 60 * 60 * 1000)) // 设置cookie到期时间
+  const expires = 'expires=' + d.toUTCString()
+  document.cookie = name + '=' + value + '; ' + expires
 }
 
-export function getCookie(cname: string) { // 获取cookie方法
-  const name = cname + "=";
-  var res = document.cookie.split(';');
-  for (var i = 0; i < res.length; i++) {
-    var data = res[i].trim();
-    if (data.indexOf(name) == 0) { return data.substring(name.length, data.length); }
+export function getCookie (cname: string) { // 获取cookie方法
+  const name = cname + '='
+  const res = document.cookie.split(';')
+  for (let i = 0; i < res.length; i++){
+    const data = res[i].trim()
+    if (data.indexOf(name) == 0){ return data.substring(name.length, data.length) }
   }
-  return "";
+  return ''
 }

@@ -5,7 +5,8 @@
   "main": "dist/bundle.umd.js",
   "scripts": {
     "build": "rollup -c --configPlugin @rollup/plugin-typescript",
-    "dev": "rollup -c -w --configPlugin @rollup/plugin-typescript"
+    "dev": "rollup -c -w --configPlugin @rollup/plugin-typescript",
+    "lint-fix": "eslint --fix --ext .js --ext .ts src/"
   },
   "browserslist": "> 0.25%, not dead",
   "repository": {

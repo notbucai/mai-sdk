@@ -92,6 +92,14 @@ module.exports = {
     // semi: ['error', 'never'],
     '@typescript-eslint/semi': ['error', 'never'],
     '@typescript-eslint/no-non-null-assertion': 0,
-    '@typescript-eslint/no-var-requires': 0
+    '@typescript-eslint/no-var-requires': 0,
+    '@typescript-eslint/no-this-alias': [
+      'error',
+      {
+        'allowDestructuring': false, // Disallow `const { props, state } = this`; true by default
+        'allowedNames': ['self'] // Allow `const self = this`; `[]` by default
+      }
+    ],
+    '@typescript-eslint/no-empty-interface': 'off'
   }
 }
