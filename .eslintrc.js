@@ -1,90 +1,97 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
     node: true,
-    commonjs: true,
-    amd: true,
-    es6: true
+    es2021: true,
+    jest: true
   },
-  globals: {
-    'mai': true
-  },
-  extends: ['eslint:recommended'],
-  parser: 'babel-eslint',
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended'
+  ],
+  plugins: [
+    '@typescript-eslint'
+  ],
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 12,
     sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-      experimentalObjectRestSpread: true
-    }
+    parser: '@typescript-eslint/parser'
   },
-  root: true,
   rules: {
-    'no-console': 0,
-    'indent': [2, 2],
-    'camelcase': [2, { properties: 'never' }],
-    'quotes': [2, 'single', { allowTemplateLiterals: true }],
-    'semi': [2, 'never'],
-    'eqeqeq': [2, 'always'],
-    'curly': [2, 'multi-line'],
-    'array-bracket-spacing': [2, 'never'],
-    'brace-style': [2, '1tbs', { allowSingleLine: true }],
-    'comma-dangle': [2, 'never'],
-    'comma-spacing': 2,
-    'comma-style': 2,
-    'computed-property-spacing': 2,
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-unused-vars': 1,
+    'no-undef': 1,
+    // https://eslint.org/docs/rules/no-var
+    'no-var': 'error',
+    // https://cn.eslint.org/docs/rules/no-trailing-spaces
+    'no-trailing-spaces': 2, // 禁用行尾空白
+    'comma-style': ['error', 'last'],
+    'comma-dangle': ['error', 'never'],
+    'comma-spacing': ['error', { 'before': false, 'after': true }],
+    'space-before-function-paren': 1, // 函数括号前空格
+    'object-curly-spacing': ['error', 'always'],
+    'space-infix-ops': ['warn', { 'int32Hint': false }], // 运算符周围的空格
+
+    // https://cn.eslint.org/docs/rules/key-spacing
+    'key-spacing': ['warn', { 'mode': 'strict' }], // 强制在对象字面量的键和值之间使用一致的空格 (key-spacing)
+
+    // https://cn.eslint.org/docs/rules/space-in-parens
+    'space-in-parens': ['error', 'never'], // 禁止或强制圆括号内的空格
+
+    // https://stackoverflow.com/questions/32937672/enforce-space-before-curly-brace-in-functions
+    'space-before-blocks': [
+      'warn',
+      {
+        'functions': 'always',
+        'keywords': 'never',
+        'classes': 'always'
+      }
+    ], // 要求或禁止语句块之前的空格
+
+    'no-irregular-whitespace': 2,
+    'no-multi-spaces': 1,
+    'no-multiple-empty-lines': [
+      2,
+      {
+        max: 2
+      }
+    ],
+    // https://cn.eslint.org/docs/rules/eol-last
     'eol-last': 2,
-    'func-call-spacing': 2,
-    'key-spacing': 2,
-    'keyword-spacing': 2,
-    'max-depth': [2, { max: 4 }],
-    'max-len': [2, {
-      code: 120,
-      ignoreUrls: true,
-      ignoreComments: true,
-      ignoreStrings: true,
-      ignoreTemplateLiterals: true,
-      ignoreRegExpLiterals: true
-    }],
-    'max-lines': [2, 600],
-    'max-params': [2, { max: 8 }],
-    'max-statements-per-line': [2, { max: 2 }],
-    'max-statements': [1, { max: 16 }],
-    'new-cap': 2,
-    'no-array-constructor': 2,
-    'no-lonely-if': 2,
-    'no-mixed-spaces-and-tabs': 2,
-    'no-multiple-empty-lines': [2, { max: 2 }],
-    'no-multi-spaces': 2,
-    'no-new-object': 2,
-    'no-tabs': 2,
-    'no-trailing-spaces': 2,
-    'no-unneeded-ternary': 2,
-    'no-whitespace-before-property': 2,
-    'object-curly-spacing': [2, 'always'],
-    'one-var': [2, {
-      var: 'never',
-      let: 'never',
-      const: 'never'
-    }],
-    'padded-blocks': [2, 'never'],
-    'quote-props': [2, 'consistent'],
-    'valid-jsdoc': [2, {
-      requireParamDescription: false,
-      requireReturnDescription: false,
-      requireReturn: false,
-      prefer: { returns: 'return' }
-    }],
-    'semi-spacing': [2, {
-      before: false,
-      after: true
-    }],
-    'space-before-blocks': 2,
-    'space-before-function-paren': [2, 'never'],
-    'space-infix-ops': [2, { int32Hint: false }],
-    'space-unary-ops': 2,
-    'space-in-parens': 2,
-    'spaced-comment': [2, 'always']
+    quotes: [
+      'error',
+      'single',
+      {
+        avoidEscape: true,
+        allowTemplateLiterals: true
+      }
+    ],
+    // https://eslint.org/docs/rules/prefer-const
+    'prefer-const': 2,
+    camelcase: ['error', { properties: 'never' }],
+    indent: ['error', 2, { SwitchCase: 1 }],
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/member-delimiter-style': [
+      'error',
+      {
+        multiline: {
+          delimiter: 'none',
+          requireLast: false
+        },
+        singleline: {
+          delimiter: 'semi',
+          requireLast: true
+        }
+      }
+    ],
+    '@typescript-eslint/no-empty-function': 0,
+    // semi: ['error', 'never'],
+    '@typescript-eslint/semi': ['error', 'never'],
+    '@typescript-eslint/no-non-null-assertion': 0,
+    '@typescript-eslint/no-var-requires': 0
   }
 }

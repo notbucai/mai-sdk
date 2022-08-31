@@ -1,29 +1,51 @@
 {
   "name": "mai",
-  "version": "1.0.3",
+  "version": "0.0.1",
   "description": "JavaScript stack trace",
-  "main": "dist/mai.js",
+  "main": "dist/bundle.umd.js",
   "scripts": {
-    "build": "rollup -c -w"
+    "build": "rollup -c --configPlugin @rollup/plugin-typescript",
+    "dev": "rollup -c -w --configPlugin @rollup/plugin-typescript"
   },
+  "browserslist": "> 0.25%, not dead",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CurtisCBS/monitor.git"
+    "url": "git+https://github.com/notbucai/mai-sdk.git"
   },
   "keywords": [
     "monitor",
     "mai"
   ],
-  "author": "",
+  "author": "不才 <1450941858@qq.com> (https://notbucai.com/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/CurtisCBS/monitor/issues"
   },
   "homepage": "https://github.com/CurtisCBS/monitor#readme",
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "eslint": "^4.0.0",
-    "rollup": "^0.43.0",
-    "rollup-watch": "^4.0.0"
+    "@babel/core": "^7.18.13",
+    "@babel/plugin-transform-runtime": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "@babel/preset-typescript": "^7.18.6",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-typescript": "^8.4.0",
+    "@types/ua-parser-js": "^0.7.36",
+    "@typescript-eslint/eslint-plugin": "^5.36.0",
+    "@typescript-eslint/parser": "^5.36.0",
+    "eslint": "^8.23.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "rollup": "^2.78.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-typescript2": "^0.33.0",
+    "typescript": "^4.8.2"
+  },
+  "dependencies": {
+    "core-js": "^3.25.0",
+    "stacktrace-js": "^2.0.2",
+    "ua-parser-js": "^1.0.2"
   }
 }
