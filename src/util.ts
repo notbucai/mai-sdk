@@ -25,6 +25,34 @@ export function debounce (func: any, delay: any, callback: any) {
   }
 }
 
+// export function throttle (func: (...args: any) => void, delay = 1000) {
+//   const previousDate = new Date()
+//   let previous = previousDate.getTime()// 初始化一个时间，也作为高频率事件判断事件间隔的变量，通过闭包进行保存。
+
+//   return function (...args: any) {
+//     const nowDate = new Date()
+//     const now = nowDate.getTime()
+//     if (now - previous >= delay){ // 如果本次触发和上次触发的时间间隔超过设定的时间
+//       func(...args) // 就执行事件处理函数 （eventHandler）
+//       previous = now // 然后将本次的触发时间，作为下次触发事件的参考时间。
+//     }
+//   }
+// }
+
+export function throttle (func: (...args: any[]) => void, delay = 1000) {
+  let timer: NodeJS.Timeout = null
+  return function (...args: any[]) {
+    const nowDate = new Date()
+    const now = nowDate.getTime()
+    if (!timer){
+      timer = setTimeout(function () {
+        func?.(...args)
+        timer = null
+      }, delay)
+    }
+  }
+}
+
 /**
  * merge
  *

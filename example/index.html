@@ -7,12 +7,14 @@
   <script src="http://cdn.bootcss.com/jquery/1.12.2/jquery.min.js"></script>
   <!-- <link  href="http://xxxxxxxxxxxxxx.com/xxxx.css" rel="stylesheet" type="text/css"/> -->
   <!-- <script src="http://xxxxxxxxxxxxxx.com/xxxx.js"></script> -->
-
+  <button onclick="hhh()">2222</button>
   <script>
     // console.log('mai', mai.default.apply());
     // console.log(mai);
     const app = new mai.App();
     app.use(new mai.MonitorPlugin())
+    app.use(new mai.PerformancePlugin())
+    app.use(new mai.SitePlugin())
     // mai.init({
     //   maxError: 26,
     //   report: function (data) {
@@ -51,6 +53,13 @@
 
 
   </script> -->
+  <script>
+
+    const hhh = () => {
+      console.log(222);
+      throw new Error(2934)
+    }
+  </script>
   <script>
     new Promise((r, e) => {
       throw new Error(23123);
