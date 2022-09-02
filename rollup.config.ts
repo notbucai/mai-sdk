@@ -5,6 +5,7 @@ import ts from 'rollup-plugin-typescript2'
 import json from '@rollup/plugin-json'
 import commonjs from '@rollup/plugin-commonjs'
 import path from 'path'
+import { terser } from 'rollup-plugin-terser'
 
 const { getPresetsEnv } = require('./babel.presets')
 const pkg = require(path.resolve('package.json'))
@@ -12,7 +13,7 @@ const pkg = require(path.resolve('package.json'))
 const formats: Array<ModuleFormat> = [
   'cjs',
   'esm',
-  'umd',
+  'umd'
 ]
 const output: Array<OutputOptions> = formats.map((format) => {
   const fileName = `bundle.${format}.js`
@@ -39,26 +40,29 @@ const rollupConfig: RollupOptions = {
   input: 'src/index.ts',
   output,
   external: [
-    ...Object.keys(pkg.peerDependencies || {}),
+    ...Object.keys(pkg.peerDependencies || {})
   ],
-  
   plugins: [
-    // getBabelOutputPlugin({
-    //   presets: [
-    //     getPresetsEnv()
-    //   ],
-    //   allowAllFormats: true,
-    // }),
+    getBabelOutputPlugin({
+      presets: [
+        getPresetsEnv()
+      ],
+      allowAllFormats: true
+    }),
+    terser(),
     json(),
-    ts(),
+    ts({
+      useTsconfigDeclarationDir: true,
+      include: './src/**/*'
+    }),
     nodeResolve({
-      browser: true,
+      browser: true
     }),
     commonjs({
       extensions: ['.js', '.ts'],
-      include: ['node_modules/**'],
+      include: ['node_modules/**']
     })
-  ],
+  ]
 }
 
 

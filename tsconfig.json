@@ -3,7 +3,8 @@
   "compilerOptions": {
     "module": "ESnext",
     "moduleResolution": "node",
-    "declaration": false,
+    "declaration": true,
+    "declarationDir": "./types",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "noImplicitAny": true,
@@ -15,7 +16,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "ESnext",
-    "sourceMap": false,
+    "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
     "lib": ["dom", "ESnext"],
@@ -26,8 +27,10 @@
       ]
     },
   },
+  "include": ["src", "rollup.config.ts"],
   "exclude": [
     "dist",
-    "node_modules"
-  ]
+    "node_modules",
+    "dist", "example"
+  ],
 }

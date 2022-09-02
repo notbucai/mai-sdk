@@ -1,13 +1,15 @@
 {
   "name": "mai",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha1",
   "description": "JavaScript stack trace",
-  "main": "dist/bundle.umd.js",
+  "main": "dist/bundle.cjs.js",
+  "module": "dist/bundle.esm.js",
   "scripts": {
     "build": "rollup -c --configPlugin @rollup/plugin-typescript",
     "dev": "rollup -c -w --configPlugin @rollup/plugin-typescript",
     "lint-fix": "eslint --fix --ext .js --ext .ts src/"
   },
+  "types": "./types/src/index.d.ts",
   "browserslist": "> 0.25%, not dead",
   "repository": {
     "type": "git",
@@ -20,9 +22,9 @@
   "author": "不才 <1450941858@qq.com> (https://notbucai.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/CurtisCBS/monitor/issues"
+    "url": "https://github.com/notbucai/mai-sdk/issues"
   },
-  "homepage": "https://github.com/CurtisCBS/monitor#readme",
+  "homepage": "https://github.com/notbucai/mai-sdk#readme",
   "devDependencies": {
     "@babel/core": "^7.18.13",
     "@babel/plugin-transform-runtime": "^7.18.10",
@@ -36,11 +38,13 @@
     "@types/ua-parser-js": "^0.7.36",
     "@typescript-eslint/eslint-plugin": "^5.36.0",
     "@typescript-eslint/parser": "^5.36.0",
+    "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^8.23.0",
     "eslint-plugin-babel": "^5.3.1",
     "rollup": "^2.78.1",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.33.0",
     "typescript": "^4.8.2"
   },
