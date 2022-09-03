@@ -1,9 +1,10 @@
 {
-  "name": "mai",
+  "name": "@cmai/sdk",
   "version": "0.0.1-alpha1",
   "description": "JavaScript stack trace",
   "main": "dist/bundle.cjs.js",
   "module": "dist/bundle.esm.js",
+  "private": false,
   "scripts": {
     "build": "rollup -c --configPlugin @rollup/plugin-typescript",
     "dev": "rollup -c -w --configPlugin @rollup/plugin-typescript",
